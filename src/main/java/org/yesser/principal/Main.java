@@ -1,4 +1,8 @@
-package org.yesser.principal.MavenMysql;
+package org.yesser.principal;
+
+import com.yesser.gui.VentanaPrincipal;
+
+import javax.swing.*;
 
 /**
  *
@@ -6,6 +10,7 @@ package org.yesser.principal.MavenMysql;
  */
 public class Main {
     public static void main(String... param) {
-        System.out.println("Starting application...");
+        VentanaPrincipal nueva_ventana = new VentanaPrincipal();
+        nueva_ventana.mostrar();
     }
 }
