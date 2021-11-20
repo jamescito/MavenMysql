@@ -1,5 +1,10 @@
 package com.yesser.gui;
 
+import com.yesser.conexion.Conexion;
+import com.yesser.dao.PersonaDao;
+import com.yesser.dao.PersonaDaoImpl;
+import com.yesser.modelo.Persona;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -62,18 +67,9 @@ public class CambiarClase extends JInternalFrame {
         JTextField entradaTexto = new JTextField();
         entradaTexto.setText("Yesser Miranda");
 
-        // label nombre
-        JLabel texto2 = new JLabel("Nombre");
-
-        // JTextField
-        JTextField entradaTexto2 = new JTextField();
-        entradaTexto.setText("Yesser Miranda");
-
         // agregar al panel central
         panel.add(texto);
         panel.add(entradaTexto);
-        panel.add(texto2);
-        panel.add(entradaTexto2);
 
         // boton guardar
         JButton btnGuardar = new JButton();
@@ -95,6 +91,9 @@ public class CambiarClase extends JInternalFrame {
         });
         btnGuardar.addActionListener((ActionEvent arg0) -> {
             guardar();
+            Persona persona = new Persona(entradaTexto.getText());
+            PersonaDao daoimpl = new PersonaDaoImpl();
+            daoimpl.insert(persona);
             btnGuardar.setEnabled(false);
         });
 
