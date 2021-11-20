@@ -83,6 +83,13 @@ public class EmpleadoNuevo extends JInternalFrame{
         btnGuardar.setEnabled(true);
         btnGuardar.setToolTipText("Guarda los cambios de los campos del Formulario");
 
+        JButton btnEditar = new JButton();
+        btnEditar.setText("Editado");
+        btnEditar.setPreferredSize(new Dimension(120, 50));
+        btnEditar.setFocusable(false);
+        btnEditar.setEnabled(true);
+        btnEditar.setToolTipText("Editado los cambios de los campos del Formulario");
+
         JButton btnCerrar = new JButton();
         btnCerrar.setText("Cerrar");
         btnCerrar.setPreferredSize(new Dimension(120, 50));
@@ -93,6 +100,7 @@ public class EmpleadoNuevo extends JInternalFrame{
         btnCerrar.addActionListener((ActionEvent arg0) -> {
             cerrar();
         });
+
         btnGuardar.addActionListener((ActionEvent arg0) -> {
             guardar();
             Empleado empleado= new Empleado(entradaTexto.getText());
@@ -101,6 +109,13 @@ public class EmpleadoNuevo extends JInternalFrame{
             btnGuardar.setEnabled(false);
         });
 
+        btnEditar.addActionListener((ActionEvent arg0) -> {
+            guardar();
+            Empleado empleado= new Empleado(entradaTexto.getText());
+            EmpleadoDao daoimpl = new EmpleadoDaoImpl();
+            daoimpl.update(empleado);
+            btnGuardar.setEnabled(false);
+        });
         //Agrega los componentes al formulario
         pnlTitle.add(Box.createRigidArea(new Dimension(10, 10)));
         pnlTitle.add(lblTitle);
@@ -108,6 +123,7 @@ public class EmpleadoNuevo extends JInternalFrame{
         pnlButton.add(Box.createRigidArea(new Dimension(60, 10)));
         pnlButton.add(btnCerrar);
         pnlButton.add(btnGuardar);
+        pnlButton.add(btnEditar);
 
         pnlCentral.add(panel);
 

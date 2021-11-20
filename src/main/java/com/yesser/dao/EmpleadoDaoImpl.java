@@ -48,8 +48,24 @@ public class EmpleadoDaoImpl implements EmpleadoDao {
 
     @Override
     public int update(Empleado empleado) {
-        // TODO Auto-generated method stub
-        return 0;
+        int update = -1;
+
+        Statement stm= null;
+        Connection con=null;
+        String sql="UPDATE empleado SET nombre = '"+empleado.getNombre()+ "' WHERE id = 1";
+        try {
+            con= Conexion.conectar();
+            stm= con.createStatement();
+            stm.execute(sql);
+            update=1;
+            stm.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ClienteDaoImple, método registrar");
+            e.printStackTrace();
+        }
+        return update;
+        
     }
     
 }
